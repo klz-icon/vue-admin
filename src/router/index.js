@@ -4,10 +4,23 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
+
   {
     path: "/",
-    redirect: "login"
+    nmae: "Layout",
+    component: () => import("../views/Layout/index.vue"),
+    children: [
+      {
+        path: "/",
+        name: "Home",
+        component: () => import("../views/Home/index.vue")
+      }
+    ]
   },
+  // {
+  //   path: "/",
+  //   redirect: "login"
+  // },
   {
     path: "/login",
     name: "Login",
@@ -22,7 +35,8 @@ const routes = [
     path: "/repassword",
     name: "RePassword",
     component: () => import("../views/RePassword/index.vue")
-  }
+  },
+
 ];
 
 const router = new VueRouter({
