@@ -12,18 +12,18 @@ module.exports = {
   chainWebpack: (config) => {
   },
   configureWebpack: (config) => {
-    // config.resolve = { // 配置解析别名
-    //   extensions: ['.js', '.json', '.vue'],
-    //   alias: {
-    //     '@': path.resolve(__dirname, './src'),
-    //     'public': path.resolve(__dirname, './public'),
-    //     'components': path.resolve(__dirname, './src/components'),
-    //     'common': path.resolve(__dirname, './src/common'),
-    //     'api': path.resolve(__dirname, './src/api'),
-    //     'views': path.resolve(__dirname, './src/views'),
-    //     'data': path.resolve(__dirname, './src/data')
-    //   }
-    // }
+    config.resolve = { // 配置解析别名
+      extensions: ['.js', '.json', '.vue'],
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        'public': path.resolve(__dirname, './public'),
+        'components': path.resolve(__dirname, './src/components'),
+        'common': path.resolve(__dirname, './src/common'),
+        'api': path.resolve(__dirname, './src/api'),
+        'views': path.resolve(__dirname, './src/views'),
+        'data': path.resolve(__dirname, './src/data')
+      }
+    }
   },
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: false,
@@ -36,7 +36,7 @@ module.exports = {
     // css预设器配置项
     loaderOptions: {
       // 如发现 css.modules 报错，请查看这里：http://www.web-jshtml.cn/#/detailed?id=12
-      scss: { 
+      scss: {
         prependData: `@import "./src/styles/main.scss";`
       }
     },
@@ -58,7 +58,20 @@ module.exports = {
     https: false, // 编译失败时刷新页面
     hot: true, // 开启热加载
     hotOnly: false,
-    proxy: null, // 设置代理
+    proxy: {
+      //设置代理
+      '/dev-api': {
+        // target: `${VUE_APP_BASE_API}`,
+        target: 'http://old.web-jshtml.cn/vue_admin_api',
+        changeOrigin: true,
+        ws: true,
+        // secure: false, //如果是http接口，需要配置该参数
+        //将上面的dev-api变成''
+        pathRewrite: {
+          '^/dev-api': ''
+        }
+      }
+    },
     overlay: { // 全屏模式下是否显示脚本错误
       warnings: true,
       errors: true
