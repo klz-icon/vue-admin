@@ -227,9 +227,6 @@ export default {
       if (that.ruleForm.username === "") {
         that.$message("用户名不为空!");
         return false;
-      }else if(that.ruleForm.password === ""){
-        that.$message("密码不为空");
-        return false;
       }
       // 获取验证码
       let requestData = {

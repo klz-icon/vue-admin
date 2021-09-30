@@ -1,5 +1,5 @@
 <template>
-    <div id="console"></div>
+    <div id="console-wrap"></div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#console{
+#console-wrap{
 
 }
 </style>

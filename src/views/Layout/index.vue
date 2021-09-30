@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="layout">
         <Header/>
         <Main/>
         <Nav/>
@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import Header from './Components/Header.vue'
-import Main from './Components/Main.vue'
-import Nav from './Components/Nav.vue'
+import Header from './components/Header.vue'
+import Main from './components/Main.vue'
+import Nav from './components/Nav.vue'
 export default {
     name: "Layout",
     data(){
-
+        return{}
     },
     components: {
         Header,
@@ -24,5 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#layout{
 
+}
 </style>

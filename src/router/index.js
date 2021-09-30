@@ -8,13 +8,46 @@ const routes = [
   {
     path: "/",
     nmae: "Layout",
-    component: () => import("../views/Layout/index.vue"),
+    redirect: "/home",
+    meta: {
+      name: "控制台"
+    },
+    component: () => import("../views/layout/index.vue"),
     children: [
       {
-        path: "/",
+        path: "/home",
         name: "Home",
-        component: () => import("../views/Home/index.vue")
+        meta: {
+          name: "首页"
+        },
+        component: () => import("../views/home/index.vue"),
       }
+    ]
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    meta: {
+      name: '博客',
+    },
+    component: () => import("../views/layout/index.vue"),
+    children: [
+      {
+        path: 'articleManage',
+        component: () => import('@/views/blog/articleManage/index'),
+        name: 'ArticleManage',
+        meta: { name: '博客管理'}
+      }, {
+        path: 'classify',
+        name: 'Classify',
+        component: () => import('@/views/blog/classify/index'),
+        meta: { name: '分类管理'}
+      }, {
+        path: 'writeBlog',
+        name: 'WriteBlog',
+        component: () => import('@/views/blog/writeBlog/index'),
+        meta: {name: '写博客'}
+      },
     ]
   },
   // {
@@ -24,17 +57,29 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: () => import("../views/Login/index.vue"),
+    meta: {
+      name: "登录"
+    },
+    hidden: true,
+    component: () => import("../views/login/index.vue"),
   },
   {
     path: "/register",
     name: "Register",
-    component: () => import("../views/Register/index.vue")
+    meta: {
+      name: "注册"
+    },
+    hidden: true,
+    component: () => import("../views/register/index.vue")
   },
   {
     path: "/repassword",
     name: "RePassword",
-    component: () => import("../views/RePassword/index.vue")
+    meta: {
+      name: "重置密码"
+    },
+    hidden: true,
+    component: () => import("../views/rePassword/index.vue")
   },
 
 ];
