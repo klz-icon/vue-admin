@@ -18,7 +18,8 @@ const routes = [
         path: "/home",
         name: "Home",
         meta: {
-          name: "首页"
+          name: "首页",
+          icon: "home"
         },
         component: () => import("../views/home/index.vue"),
       }
@@ -29,6 +30,7 @@ const routes = [
     name: 'Blog',
     meta: {
       name: '博客',
+      icon: 'blog'
     },
     component: () => import("../views/layout/index.vue"),
     children: [
@@ -36,17 +38,17 @@ const routes = [
         path: 'articleManage',
         component: () => import('@/views/blog/articleManage/index'),
         name: 'ArticleManage',
-        meta: { name: '博客管理'}
+        meta: { name: '博客管理', icon: 'blogManage'}
       }, {
         path: 'classify',
         name: 'Classify',
         component: () => import('@/views/blog/classify/index'),
-        meta: { name: '分类管理'}
+        meta: { name: '分类管理', icon: 'classify'}
       }, {
         path: 'writeBlog',
         name: 'WriteBlog',
         component: () => import('@/views/blog/writeBlog/index'),
-        meta: {name: '写博客'}
+        meta: {name: '写博客', icon: 'writeBlog'}
       },
     ]
   },

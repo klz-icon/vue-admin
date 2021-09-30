@@ -10,7 +10,7 @@
       <!-- 遍历路由 -->
       <template v-for="item in routes">
         <!-- 只遍历未隐藏并且有子路由不为空的的路由 -->
-        <template v-if="!item.hidden && item.children" >
+        <template v-if="!item.hidden && item.children">
           <!-- 判断子路由是否为1-->
           <el-menu-item
             v-if="item.children.length === 1"
@@ -19,24 +19,39 @@
           >
             <!-- 显示子路由的名称 -->
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>{{ item.children[0].meta.name }}</span>
+              <!-- <svg-icon iconClass="home" className="home"/> -->
+              <!-- <i class="el-icon-location"></i> -->
+              <svg-icon
+                :iconClass="item.children[0].meta.icon"
+                :className="item.children[0].meta.icon"
+              />
+              <span class="slot"> {{ item.children[0].meta.name }}</span>
             </template>
           </el-menu-item>
 
           <!-- 子路由不为1的路由 -->
           <el-submenu v-else :key="item.id" :index="item.path">
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>{{ item.meta.name }}</span>
+              <svg-icon
+                :iconClass="item.meta.icon"
+                :className="item.meta.icon"
+              />
+              <span slot="title">{{ item.meta.name }}</span>
             </template>
             <template v-for="subItem in item.children">
               <el-menu-item
                 v-if="!subItem.hidden"
                 :key="subItem.id"
-                :index="item.path+'/'+subItem.path"
-                >{{ subItem.meta.name }}</el-menu-item
+                :index="item.path + '/' + subItem.path"
               >
+                <template slot="title">
+                  <svg-icon
+                    :iconClass="subItem.meta.icon"
+                    :className="subItem.meta.icon"
+                  />
+                  <span class="slot"> {{ subItem.meta.name }}</span>
+                </template>
+              </el-menu-item>
             </template>
           </el-submenu>
         </template>
@@ -54,6 +69,7 @@ export default {
       routes: [],
     };
   },
+
   created() {
     let that = this;
     that.routes = that.$router.options.routes;
@@ -81,13 +97,13 @@ export default {
   // vh是基于屏幕算的50vh是半个屏幕
   background-color: #f5f5f5;
   border-right: 1px solid #ccc;
+  svg {
+    font-size: 20px;
+    margin-right: 30px;
+  }
 }
 
 .el-menu-vertical-demo {
   text-align: left;
-}
-
-.el-menu-item is-active{
-  background-color: lightpink;
 }
 </style>
