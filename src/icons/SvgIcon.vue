@@ -58,7 +58,7 @@ export default {
   width: 1em;
   height: 1em;
   float: left;
-  margin-top: 15px;
+  margin-top: 18px;
   margin-right: 10px;
   font-size: 20px;
 }
